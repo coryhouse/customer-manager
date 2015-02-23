@@ -1,0 +1,110 @@
+<h2>Customers</h2>
+
+<table id="customers" class="table table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Balance</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: customers">
+        <tr data-bind="click: $parent.viewCustomerDetails($data)" data-toggle="modal" data-target="#customer-details">
+            <td data-bind="text: firstName"></td>
+            <td data-bind="text: lastName"></td>
+            <td data-bind="text: balance"></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Customer Details Modal -->
+<div class="modal fade" id="customer-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Customer Details</h4>
+            </div>
+            <div class="modal-body" data-bind="with: currentlySelectedCustomer">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="first-name" class="col-sm-3 control-label">First Name</label> 
+                        <div class="col-sm-9">
+                            <input id="first-name" type="text" class="form-control" data-bind="value: firstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name" class="col-sm-3 control-label">Last Name</label> 
+                        <div class="col-sm-9">
+                            <input id="last-name" type="text" class="form-control" data-bind="value: lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">Address</label> 
+                        <div class="col-sm-9">
+                            <input id="address" type="text" class="form-control" data-bind="value: address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-sm-3 control-label">Phone</label> 
+                        <div class="col-sm-9">
+                            <input id="phone" type="text" class="form-control" data-bind="value: phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="balance" class="col-sm-3 control-label">Balance</label> 
+                        <div class="col-sm-9" data-bind="text: balance"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <input type="text" placeholder="Enter payment amount" class="form-control" data-bind="value: $parent.paymentAmount">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" data-bind="click: $parent.issuePayment.bind($parent, $data)">Issue Payment</button>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="visible: $parent.paymentSubmittedAlertVisible">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-bind="click: $parent.hidePaymentSubmittedAlert($data)" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Payment Issued Successfully.
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Payment History</h4>
+                    <div class="form-group">
+                        <p data-bind="visible: paymentHistory().length === 0" class="col-sm-offset-4 col-sm-8">
+                            No payments exist.
+                        </p>
+                        <table class="col-sm-offset-4 col-sm-8" data-bind="visible: paymentHistory().length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: paymentHistory">
+                                <tr>
+                                    <td data-bind="text: date"></td>
+                                    <td data-bind="text: amount"></td>
+                                    <td data-bind="text: total"></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

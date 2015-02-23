@@ -1,0 +1,58 @@
+<h2>About</h2>
+
+<h3>Assumptions</h3>
+<ol>
+    <li>Connectivity won't be an issue</li>
+    <li>IE8+ is supported</li>
+    <li>Team is confortable with JS (otherwise, would've went with MVC &amp; Razor)</li>
+</ol>
+
+<h3>Technologies</h3>
+<p>
+    <ul>
+        <li>Knockout - Two way binding and components</li>
+        <li>RequireJS - Module system</li>
+        <li>GulpJS - Build system</li>
+        <li>Bower - Package management</li>
+        <li>Node and NPM - To install dependencies</li>
+        <li>Yeoman - Scaffolding</li>
+        <li>Jasmine - JS Unit testing library</li>
+        <li>Karma - Unit test runner</li>
+        <li>Bootstrap - HTML, CSS, JS framework</li>
+    </ul>
+</p>
+
+<h3>Build Process</h3>
+<p>
+    <ol>
+        <li>Open command line</li>
+        <li>Change directory to the root of this project</li>
+        <li>Type npm install to install all necessary packages (stored in package.json)</li>
+        <li>Type "gulp". This will run the default task in gulp which does the following:
+            <ul>
+                <li>Minifies and concatenates all JS</li>
+                <li>Migrates built code to the dist folder</li>
+            </ul>
+        </li>
+        <li>Fire up your favorite webserver and point it at /dist</li>
+    </ol>
+</p>
+
+<h3>Tests</h3>
+<p>
+    You can run tests in one of two ways:
+    <ol>
+        <li>Open /test/index.html in your browser.</li>
+        <li>Type "install -g karma-cli" so that you can run Karma from anywhere. Then type "karma start" in the project root dir (where karma.conf is stored).</li>
+    </ol>
+</p>
+
+<h3>Opportunities for Improvement</h3>
+<ol>
+  <li>Use Gulp to watch files and automatically lint, bundle, and run tests when files change.</li>
+  <li>Use Gulp to run Jasmine tests via Karma test runner</li>
+  <li>Allow saving changes to user information</li>
+  <li>Use Knockout mapping plugin to simplify viewmodels</li>
+  <li>The customer service should return a POJO instead of an observableArray, but for speed I simply returned the observable array I needed</li>
+  <li>When you refresh you'll see that the payment you submitted isn't displayed. I didn't implement a DB, SQLLite, or flat file to persist changes</li>
+</ol>
